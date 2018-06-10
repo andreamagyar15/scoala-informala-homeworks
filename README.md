@@ -1,1 +1,0 @@
-# scoala-informala-homeworks
