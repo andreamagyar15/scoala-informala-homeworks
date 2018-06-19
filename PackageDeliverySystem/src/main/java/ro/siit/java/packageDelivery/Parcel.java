@@ -18,6 +18,6 @@ public class Parcel {
 
     }
     public void creatTrackingInfo(ContactInfo sender,ContactInfo destination){
-
+        // TODO - CODE REVIEW - Who creates the tracking info? Is it the parcel? or someone else?
     }
 }
