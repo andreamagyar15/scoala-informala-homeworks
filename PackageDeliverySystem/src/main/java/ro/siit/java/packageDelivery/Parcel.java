@@ -1,23 +1,46 @@
+/**
+ * Parcel object constructor
+ */
 package ro.siit.java.packageDelivery;
 
 public class Parcel {
 
-    private TrackingInfo trackingInfo;
     private ContactInfo sender;
     private ContactInfo destination;
-    private int[] dimensions;
+    private int height;
+    private int width;
     private int weight;
-    public Parcel( TrackingInfo trackingInfo, ContactInfo sender,ContactInfo destination, int[] dimensions, int weight){
-        this.trackingInfo=trackingInfo;
+    public Parcel(  ContactInfo sender,ContactInfo destination, int height,int width, int weight){
+
         this.sender=sender;
         this.destination=destination;
-        this.dimensions=dimensions;
+        this.height=height;
+        this.width=width;
         this.weight=weight;
     }
+
+    public ContactInfo getSender() {
+        return sender;
+    }
+
+    public ContactInfo getDestination() {
+        return destination;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
     public void setDelivery (TrackingInfo trackingInfo, ContactInfo sender, ContactInfo destination){
 
     }
-    public void creatTrackingInfo(ContactInfo sender,ContactInfo destination){
-        // TODO - CODE REVIEW - Who creates the tracking info? Is it the parcel? or someone else?
-    }
+
 }
