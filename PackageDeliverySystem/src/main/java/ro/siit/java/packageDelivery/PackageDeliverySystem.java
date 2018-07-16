@@ -7,15 +7,22 @@ package ro.siit.java.packageDelivery;
 
 import java.util.*;
 
+// TODO - CODE REVIEW - javadoc?
 public class PackageDeliverySystem {
 
+    // TODO - CODE REVIEW - javadoc would help here -> to note what the Integer key means
     private Map<Integer,Parcel> packages=new HashMap<Integer,Parcel>();
+    // TODO - CODE REVIEW - why not use a list? if an array is more suitable, leave a comment please
     private Facility[] facilities=new Facility[5];
+    // TODO - CODE REVIEW - the name of the variable does not show that this is used for generating trackingIds
     private int trackingId=0;
 
+    // TODO - CODE REVIEW - check the requirements of this method (Req4) - sender & dest address should be passed in
     public int requestDeliveryPickup() {
         return trackingId++;
     }
+
+    // TODO - CODE REVIEW - why is this a public method? shouldn't this be called from tee request delivery pickup?
     public void addParcelToList(int id, Parcel parcel) {
         try {
             packages.put(id, parcel);
@@ -67,6 +74,7 @@ public class PackageDeliverySystem {
     }
     /** Calculates the shortest route from pickup address to delivery address */
     public ArrayList<String> routeCalculation(String pickupAddress, String deliveryAddress){
+        // TODO - CODE REVIEW - this method is very long - I propose you refactor it with extract method
         ArrayList <Edge> edgeList =new ArrayList <Edge>();
 
         edgeList.add(new Edge("Cluj","Brasov",6));

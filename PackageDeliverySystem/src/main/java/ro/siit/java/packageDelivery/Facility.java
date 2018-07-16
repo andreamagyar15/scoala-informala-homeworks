@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Facility {
+    // TODO - CODE REVIEW - why not use collactions of vehicles?
     private int amountOfPickUpCars;
     private int amountOfTransportCars;
     private int amountOfDeliveryCars;
