@@ -14,6 +14,12 @@ public class ContactInfo {
         this.contactName = contactName;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        if(this.contactName==null||this.contactName.isEmpty()){
+            throw new IllegalArgumentException("Contact name null or empty");
+        }
+        if(this.phoneNumber==null || this.phoneNumber.isEmpty()){
+            throw  new IllegalArgumentException("Phone number is null or empty");
+        }
     }
 
     public String getContactName() {

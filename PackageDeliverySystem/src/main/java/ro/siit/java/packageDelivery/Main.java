@@ -1,7 +1,7 @@
 /**
  * Main Class with initialization for facilities, parcel
  * Calculate the shortest root from source address to delivery address
- * Filter the package in every facility until arrive in destination city
+ * Filter the package in every facility
  *
  */
 
@@ -10,63 +10,85 @@ package ro.siit.java.packageDelivery;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-
-        //facilities
-        Facility[] facilities = {
-                new Facility(3,4,1, "Cluj"),
-                new Facility(2,3,4, "Brasov"),
-                new Facility(2,1,3, "Bucuresti"),
-                new Facility(3,2,2, "Sibiu"),
-                new Facility(2,3,1, "Deva")
-        };
-
-        Address sourceAdrees=new Address("Romania","Cluj","Unirii","442121");
-        ContactInfo sourceContact =new ContactInfo("Ana",sourceAdrees,"075145245");
-
-        Address destinationAdrees=new Address("Romania","Bucuresti","Traian","443432");
-        ContactInfo destinationContact =new ContactInfo("Maria",destinationAdrees,"075658546");
-
-        Set<Parcel> parcel =new HashSet<Parcel>() ;
-        parcel.add(new Parcel(sourceContact,destinationContact,12,33,21));
-
+    public static void main(String[] args) throws IllegalArgumentException {
         PackageDeliverySystem packageDeliverySystem=new PackageDeliverySystem();
 
-        ArrayList<String> result=packageDeliverySystem.requestDeliveryPickup(sourceContact,destinationContact);
-        for(int p=0;p<result.size();p++){
-            System.out.print(result.get(p)+" ");
+        //facilities
+        packageDeliverySystem.setFacilities();
+        Facility[] facilities=packageDeliverySystem.getFacilities();
+
+        //Instances of package
+        Address sourceAddress=new Address("Romania","Cluj","Unirii","442121");
+        ContactInfo sourceContact =new ContactInfo("Ana",sourceAddress,"075145245");
+        Address destinationAddress=new Address("Romania","Bucuresti","Traian","443432");
+        ContactInfo destinationContact =new ContactInfo("Maria",destinationAddress,"075658546");
+        int id1=packageDeliverySystem.requestDeliveryPickup();
+        Parcel p1=new Parcel(sourceContact,destinationContact,12,33,21);
+
+        TrackingInfo p1TrackInfo =new TrackingInfo();
+        p1TrackInfo.createTrackingInfo(sourceContact,destinationContact);
+        p1.setTrackingInfo(p1TrackInfo);
+        packageDeliverySystem.addParcelToList(id1,p1);
+
+        Address sourceAddress2=new Address("Romania","Brasov","Ariesului","342345");
+        ContactInfo sourceContact2 =new ContactInfo("Bogdan",sourceAddress2,"07514546");
+        Address destinationAddress2=new Address("Romania","Sibiu","Artelor","45467");
+        ContactInfo destinationContact2 =new ContactInfo("Stefan",destinationAddress2,"075645656456");
+        int id2=packageDeliverySystem.requestDeliveryPickup();
+        Parcel p2=new Parcel(sourceContact2,destinationContact2,15,83,27);
+
+        TrackingInfo p2TrackInfo =new TrackingInfo();
+        p2TrackInfo.createTrackingInfo(sourceContact2,destinationContact2);
+        p2.setTrackingInfo(p2TrackInfo);
+        packageDeliverySystem.addParcelToList(id2,p2);
+
+        //Print packages
+        System.out.println("Packages: ");
+        packageDeliverySystem.getPackages();
+
+        //Shortest route for a package
+        System.out.println("First package shortest route: ");
+        ArrayList<String> shortestRoute=packageDeliverySystem.routeCalculation(sourceAddress.getCity(),destinationAddress.getCity());
+        for(int p=0;p<shortestRoute.size();p++){
+            System.out.print(shortestRoute.get(p)+" ");
         }
         System.out.println();
-        int facilityIndex=0;
+
+        //delivery simulation for p1
+        int facilityIndex=facilityIndex(shortestRoute.get(0),facilities);
         String currentCity;
         String nextDestination;
-        //delivery simulation
-        for(int i=0;i<result.size()-1;i++){
-            for (int j=0;j<facilities.length;j++) {
-                if (result.get(i).equals(facilities[i].getCity())) {
-                    facilityIndex = i;
-                    break;
-                }
-            }
-            currentCity = result.get(i);
-            nextDestination = result.get(i + 1);
-            if(i==0){
-                facilities[facilityIndex].pickUp(result.get(i));
-            }
-            facilities[facilityIndex].filterPackages(currentCity, nextDestination);
-            if(result.get(i + 1).equals(result.get(result.size()-1))){
-                currentCity=nextDestination;
-                facilities[facilityIndex].filterPackages(currentCity,nextDestination);
-            }
+        String packHistory="";
 
+        currentCity = shortestRoute.get(0);
+        nextDestination = shortestRoute.get(1);
+        //pickup address
+        facilities[facilityIndex].addPackageToFacility(packageDeliverySystem.getTrackingId(p1));
+        packHistory= facilities[facilityIndex].pickUp(shortestRoute.get(0));
+        p1TrackInfo.addInfoToHistory(packHistory);
+        //next destination
+        packHistory=facilities[facilityIndex].filterPackages(currentCity, nextDestination);
+        facilities[facilityIndex].deletePackageFromFacility(facilityIndex);
+        p1TrackInfo.addInfoToHistory(packHistory);
+
+        facilityIndex=facilityIndex(shortestRoute.get(1),facilities);
+        facilities[facilityIndex].addPackageToFacility(packageDeliverySystem.getTrackingId(p1));
+
+        //check for delivery
+        if(shortestRoute.get(1).equals(p1.getDestination().getAddress().getCity())){
+            packHistory=  facilities[facilityIndex].delivery(shortestRoute.get(1));
+            p1TrackInfo.addInfoToHistory(packHistory);
         }
 
-
-
-
-
-
-
-
+        String track=packageDeliverySystem.getParcelTrackingInfo(0);
+        System.out.println(track);
+    }
+    public static int facilityIndex(String facility,Facility[] facilities){
+        for (int j=0;j<facilities.length;j++) {
+            if (facility.equals(facilities[j].getCity())) {
+                return j;
+            }
+        }
+        return -1;
     }
 }

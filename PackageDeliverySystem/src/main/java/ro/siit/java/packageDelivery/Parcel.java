@@ -10,13 +10,26 @@ public class Parcel {
     private int height;
     private int width;
     private int weight;
-    public Parcel(  ContactInfo sender,ContactInfo destination, int height,int width, int weight){
+    private TrackingInfo trackingInfo;
 
+    public Parcel(ContactInfo sender, ContactInfo destination, int height, int width, int weight){
         this.sender=sender;
         this.destination=destination;
         this.height=height;
         this.width=width;
         this.weight=weight;
+        this.trackingInfo=null;
+        if(this.height<=0|| this.width<=0|| this.weight<=0){
+            throw  new IllegalArgumentException("The package parameters are wrong");
+        }
+    }
+
+    public TrackingInfo getTrackingInfo() {
+        return trackingInfo;
+    }
+
+    public void setTrackingInfo(TrackingInfo trackingInfo) {
+        this.trackingInfo = trackingInfo;
     }
 
     public ContactInfo getSender() {
@@ -43,4 +56,15 @@ public class Parcel {
 
     }
 
+    @Override
+    public String toString() {
+        return "Parcel{" +
+                "sender=" + sender +
+                ", destination=" + destination +
+                ", height=" + height +
+                ", width=" + width +
+                ", weight=" + weight +
+                ", trackingInfo=" + trackingInfo +
+                '}';
+    }
 }

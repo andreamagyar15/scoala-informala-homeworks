@@ -1,6 +1,6 @@
 package ro.siit.java.packageDelivery;
-
-public class PickUpVehicle implements Vechicle {
+/** Pick up vehicle  */
+public class PickUpVehicle implements Vehicle {
     private int carId;
 
     public PickUpVehicle(int carId) {

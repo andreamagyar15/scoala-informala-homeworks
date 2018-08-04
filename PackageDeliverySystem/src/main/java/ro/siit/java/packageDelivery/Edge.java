@@ -1,4 +1,4 @@
-/*
+/**
 Edge between the source and destination with distance
  */
 package ro.siit.java.packageDelivery;
@@ -12,6 +12,10 @@ public class Edge {
         this.a = a;
         this.b = b;
         this.dist = dist;
+        if(this.dist<=0){
+            throw  new IllegalArgumentException("The distance is not correct");
+        }
+
     }
 
     public String getA() {

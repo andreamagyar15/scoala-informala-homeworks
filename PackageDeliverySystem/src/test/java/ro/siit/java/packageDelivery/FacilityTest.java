@@ -15,7 +15,7 @@ public class FacilityTest {
     }
     @Test
     public void testFilterPackages(){
-        Facility facility =new Facility(2,3,3,"Cluj");
+        Facility facility =new Facility(2,3,3,"Cluj",null);
         String  expected="The parcel is now in: "+"Cluj"+" the destination is: "+"Brasov";
         facility.filterPackages("Cluj","Brasov");
 

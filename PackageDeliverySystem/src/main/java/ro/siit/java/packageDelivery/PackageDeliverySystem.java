@@ -5,32 +5,76 @@
  */
 package ro.siit.java.packageDelivery;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
+// TODO - CODE REVIEW - javadoc?
 public class PackageDeliverySystem {
 
-    private Set<Parcel> packages;
-    private Facility facilities[];
+    // TODO - CODE REVIEW - javadoc would help here -> to note what the Integer key means
+    private Map<Integer,Parcel> packages=new HashMap<Integer,Parcel>();
+    // TODO - CODE REVIEW - why not use a list? if an array is more suitable, leave a comment please
+    private Facility[] facilities=new Facility[5];
+    // TODO - CODE REVIEW - the name of the variable does not show that this is used for generating trackingIds
+    private int trackingId=0;
 
-    public ArrayList<String> requestDeliveryPickup(ContactInfo pickupContactInfo, ContactInfo deliveryContactInfo) {
-
-        ArrayList<String> shortestRoute=routeCalculation(pickupContactInfo.getAddress().getCity(),deliveryContactInfo.getAddress().getCity());
-
-        return shortestRoute;
+    // TODO - CODE REVIEW - check the requirements of this method (Req4) - sender & dest address should be passed in
+    public int requestDeliveryPickup() {
+        return trackingId++;
     }
 
-    public TrackingInfo getTrackingInfo(String trackingId){
-
-        return null;
+    // TODO - CODE REVIEW - why is this a public method? shouldn't this be called from tee request delivery pickup?
+    public void addParcelToList(int id, Parcel parcel) {
+        try {
+            packages.put(id, parcel);
+        }catch (Exception e){
+            System.out.println("Something went wrong. Please check the input data");
+        }
     }
-    public Parcel[] getPackages(Administrator admin){
-
-        return null;
+    public String getParcelTrackingInfo(int trackingId){
+        TrackingInfo trackingInfo=new TrackingInfo();
+        try {
+            trackingInfo = packages.get(trackingId).getTrackingInfo();
+            return trackingInfo.displayTrackingInfo();
+        }catch(Exception e){
+            return "Package not found";
+        }
     }
+
+    public Integer getTrackingId(Parcel parcel) {
+        for(Integer key: packages.keySet()){
+            if(packages.get(key).equals(parcel)){
+               return key;
+            }
+        }
+        return -1;
+    }
+
+    public void getPackages(){
+        displayPackages(packages);
+    }
+
+    public void setFacilities() {
+       this.facilities = new Facility[]{
+                new Facility(3, 4, 1, "Cluj", null),
+                new Facility(2, 3, 4, "Brasov", null),
+                new Facility(2, 1, 3, "Bucuresti", null),
+                new Facility(3, 2, 2, "Sibiu", null),
+                new Facility(2, 3, 1, "Deva", null)
+        };
+    }
+
+    public Facility[] getFacilities() {
+        return facilities;
+    }
+
+    private void displayPackages(Map<Integer, Parcel> packages) {
+        for(Map.Entry<Integer,Parcel> pack:packages.entrySet()) {
+            System.out.println("ID: " +pack.getKey() + " From: " + pack.getValue().getSender().getAddress().getCity() + " To: " + pack.getValue().getDestination()              .getAddress().getCity());
+        }
+    }
+    /** Calculates the shortest route from pickup address to delivery address */
     public ArrayList<String> routeCalculation(String pickupAddress, String deliveryAddress){
+        // TODO - CODE REVIEW - this method is very long - I propose you refactor it with extract method
         ArrayList <Edge> edgeList =new ArrayList <Edge>();
 
         edgeList.add(new Edge("Cluj","Brasov",6));
@@ -81,7 +125,7 @@ public class PackageDeliverySystem {
             //check the unvisited neighbors
             for (int l = 0; l < edgeList.size(); l++) {
                 edge=edgeList.get(l);
-                if ((pickupAddress.equals(edge.getA()) && (!visited.contains(edge.getA()))) || (pickupAddress.equals(edge.getB()) && (!visited.contains(edge.getB()))) ) {
+                if ((pickupAddress.equals(edge.getA()) && (!visited.contains(edge.getA()))) || (pickupAddress.equals(edge.getB()) && (!visited.contains(edge.getB())))                  ) {
                     neighborIndex=getNeighborIndex(pickupAddress,edgeList,unvisited,l);
                     if (neighborIndex > -1) {
                         neighbor=getNeighbor(pickupAddress,edgeList,neighborIndex);
@@ -106,9 +150,7 @@ public class PackageDeliverySystem {
                 indvis++;
                 ind = unvisited.indexOf(pickupAddress);
             }
-
         }
-
         return visited;
     }
     public void creatTrackingInfo(ContactInfo sender,ContactInfo destination){

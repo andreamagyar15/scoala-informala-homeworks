@@ -1,6 +1,6 @@
 package ro.siit.java.packageDelivery;
 
-public class DeliveryVehicle implements Vechicle {
+public class DeliveryVehicle implements Vehicle {
     private int carId;
 
     public DeliveryVehicle(int carId) {
