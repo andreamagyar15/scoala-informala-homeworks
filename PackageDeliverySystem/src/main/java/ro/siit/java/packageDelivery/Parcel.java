@@ -3,7 +3,9 @@
  */
 package ro.siit.java.packageDelivery;
 
-public class Parcel {
+import java.io.Serializable;
+
+public class Parcel implements Serializable {
 
     private ContactInfo sender;
     private ContactInfo destination;

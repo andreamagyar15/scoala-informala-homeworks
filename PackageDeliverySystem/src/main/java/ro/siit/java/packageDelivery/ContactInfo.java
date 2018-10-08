@@ -5,7 +5,9 @@ Validate the information
 
 package ro.siit.java.packageDelivery;
 
-public class ContactInfo {
+import java.io.Serializable;
+
+public class ContactInfo implements Serializable {
     private String contactName;
     private Address address;
     private String phoneNumber;
@@ -36,5 +38,14 @@ public class ContactInfo {
 
     public boolean validateAddress(Address  address){
      return false;
+    }
+
+    @Override
+    public String toString() {
+        return "ContactInfo{" +
+                "contactName='" + contactName + '\'' +
+                ", address=" + address +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }

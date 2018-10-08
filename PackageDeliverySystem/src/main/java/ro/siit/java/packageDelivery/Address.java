@@ -1,18 +1,19 @@
 /**
-* Creates the Address object with country, city, street and zipcode
+* Create the Address object with country, city, street and zipcode
     country/city/street/zipcode may not be null
- @throws IllegalArgumentException if any of the arguments are null
+
  */
 
 package ro.siit.java.packageDelivery;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     private String country;
     private String city;
     private String street;
     private String zipCode;
-    // TODO - CODE REVIEW - IllegalArgumentException is a runtime exception - you don't need to add it to the method's header
-    public Address(String country,String city, String street,String zipCode) throws IllegalArgumentException{
+    public Address(String country,String city, String street,String zipCode) {
         this.country=country;
         this.city=city;
         this.street=street;
@@ -45,5 +46,15 @@ public class Address {
 
     public String getZipCode() {
         return zipCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                '}';
     }
 }
