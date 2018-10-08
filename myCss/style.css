@@ -1,0 +1,356 @@
+body{
+  background-color: #c1d9c35c;
+}
+.addProductToCart{
+  left:33%;
+  position: relative;
+}
+.bg-light{
+  background-color:#749266 !important;
+}
+.navbar{
+  background-color: #536f49;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+.navbar a{
+  color:#1a2618;
+}
+.my-2{
+  margin-right: 10px;
+}
+.carousel-inner  img {
+  height:500px;
+}
+.btn-primary {
+  border-color: #0f150e;
+  background-color: #6c826b;
+
+}
+.btn-primary:hover, .btn-primary:active{
+  border-color: #0f150e;
+  background-color: #435a42;
+}
+header{
+  padding-top:80px;
+}
+.dropdown-menu{
+  background-color: #9eb6a3;
+}
+#footer-bar{
+  background-color: #89ab89;
+}
+#formContainer{
+  margin-top:80px;
+}
+#formContainer form{
+  width: 60%;
+  margin:auto;
+}
+li{
+  list-style: none;
+}
+#productDetailsContainer{
+  margin-top:70px;
+}
+#img img{
+  width:70%;
+}
+#newArrivalContainer{
+  display:flex;
+  align-items: flex-end;
+}
+#formForMessage{
+  display:none;
+}
+#cartTemplate{
+  display:none;
+}
+#imgContainer{
+  height: 150px;
+}
+#cartImg{
+  height: 100%;
+}
+
+#messageList{
+  margin:80px auto;
+}
+#messageTemplate{
+  border:1px solid black;
+  margin: 10px 20px;
+  padding: 20px;
+
+}
+#messageContent{
+  padding-left: 30px;
+}
+#logOutLink{
+  margin: 5px;
+}
+h4{
+  color: #242f21;
+}
+h4:hover{
+  color: #242f21;
+}
+#updateButton,#deleteButton{
+  margin:5px auto;
+}
+.nameclass{
+  background-color: #568d46;
+}
+.table>tbody>tr>td, .table>tfoot>tr>td{
+    vertical-align: middle;
+}
+@media screen and (max-width: 600px) {
+    table#cart tbody td .form-control{
+		width:20%;
+		display: inline !important;
+	}
+	.actions .btn{
+		width:36%;
+		margin:1.5em 0;
+	}
+
+	.actions .btn-info{
+		float:left;
+	}
+	.actions .btn-danger{
+		float:right;
+	}
+
+	table#cart thead { display: none; }
+	table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+	table#cart tbody tr td:first-child { background: #333; color: #fff; }
+	table#cart tbody td:before {
+		content: attr(data-th); font-weight: bold;
+		display: inline-block; width: 8rem;
+	}
+
+
+
+	table#cart tfoot td{display:block; }
+	table#cart tfoot td .btn{display:block;}
+
+}
+a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+.datepicker{
+  z-index: 9999;
+}
+#datepicker,#datepickerUpdate{
+
+    height:55px;
+    width:60%;
+    box-shadow: inset 0 1px 2px rgb(223,112,78), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+}
+
+#ui-datepicker-div, #ui-datepickerUpdate-div{
+
+    width: 60%;
+    height: 51%;
+    font-size: 25px;
+}
+#ui-datepicker-div table,#ui-datepickerUpdate-div table{
+    background-color: #ddcbfa;
+}
+.hideButton{
+  display: none;
+}
+.showButton{
+  display:block;
+}
+.ui-datepicker-prev,.ui-datepicker-next,.ui-datepickerUpdate-prev,.ui-datepickerUpdate-next{
+    background-color:#d3cfd9;
+}
+
+HTML  CSS  JS Result
+EDIT ON
+ @import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body{font-family: 'Raleway', sans-serif ;}
+
+.tab-style{
+font-size:20px;
+width:50%;
+background-color:#f2f2f2;
+  text-align:center;
+
+
+}
+.nav-tabs > li > a {
+    margin-right: 0px;
+    color:grey;
+}
+
+
+
+.group2 {
+    position: relative;
+    margin-top: 16px;
+}
+
+.btn-block{margin-top:20px;
+margin-bottom:20px;
+font-size:18px;}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {   background-color:#e5ecf4;
+color:#4a89dc;}
+
+.login-shadow{-webkit-box-shadow: 5px -5px 6px 0px rgba(82,82,82,0.52);
+-moz-box-shadow: 5px -5px 6px 0px rgba(82,82,82,0.52);
+box-shadow: 5px -5px 6px 0px rgba(82,82,82,0.52);
+  z-index:1;
+
+}
+
+.signup-shadow{-webkit-box-shadow: -5px 0px 6px 0px rgba(82,82,82,0.52);
+-moz-box-shadow: -5px -5px 6px 0px rgba(82,82,82,0.52);
+box-shadow: -5px 0px 6px 0px rgba(82,82,82,0.52);
+
+}
+
+
+.modal-header{background-color:#e5ecf4;}
+
+.group {
+    position: relative;
+    margin-top: 30px;
+}
+
+
+.input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    -webkit-appearance: none;
+    display: block;
+    background: none;
+    color: #636363;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #757575;
+}
+
+.input:focus { outline: none; }
+
+
+/* Label */
+
+.label {
+    color: #757575;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: -10px;
+    top: 10px;
+    transition: all 0.2s ease;
+}
+
+
+/* active */
+
+.input:focus ~ .label, .input.used ~ .label {
+    top: -20px;
+  transform: scale(.75); left:-15px;
+    /* font-size: 14px; */
+    color: #4a89dc;
+}
+
+
+/* Underline */
+
+.bar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.bar:before, .bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #4a89dc;
+    transition: all 0.2s ease;
+}
+
+.bar:before { left: 50%; }
+
+.bar:after { right: 50%; }
+
+
+/* active */
+
+.input:focus ~ .bar:before, .input:focus ~ .bar:after { width: 50%; }
+
+
+/* Highlight */
+
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
+/* active */
+
+.input:focus ~ .highlight {
+    animation: inputHighlighter 0.3s ease;
+}
+
+
+@media  screen and (max-width: 767px) and (min-width: 576px){
+  #myModal{margin-left:20%;
+            margin-right:20%;}
+
+  #forgot-password{margin-left:20%;
+            margin-right:20%;}
+}
+
+
+@media screen and (min-width: 768px) {
+
+    #myModal .modal-dialog  {width:500px;}
+
+  #forgot-password .modal-dialog{width:500px;}
+
+  .modal-body{padding-left:50px;
+              padding-right:50px;}
+}
+
+.fade.in {
+  opacity: 1;
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.modal-backdrop.in {
+  opacity: 0.5;
+}
+.modal-body{background-image:url('http://res.cloudinary.com/rinma/image/upload/v1500489833/Airplane-flying-desktop-pictureproba2_rlcced.jpg');
+background-size:cover;
+z-inedx:4;}
+
+em{display:none;}
+
+
+ VIEW RESOURCES 1×
+0.5×
+0.25×
+ RERUN

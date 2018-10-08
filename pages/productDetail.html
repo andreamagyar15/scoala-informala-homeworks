@@ -1,0 +1,234 @@
+<!DOCTYPE=html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="This is the page description">
+    <meta name="author" content="andi">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta property="og:image" content="url('img/.jpg)" />
+
+
+    <script src="../js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../myCss/style.css" />
+      <link rel="stylesheet" type="text/css" href="../myCSS/datepicker.css" />
+
+    <title>My App</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">MyStore</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"><i class="fa fa-home"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="productList.html?categorie=products">All products</a>
+                  <a class="dropdown-item" href="productList.html?categorie=tshirts">T-Shirts</a>
+                  <a class="dropdown-item" href="productList.html?categorie=bags">Bags</a>
+                  <a class="dropdown-item" href="productList.html?categorie=shoes ">Shoes</a>
+                  <a class="dropdown-item" href="productList.html?categorie=hats">Hats</a>
+                  <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="productList.html?categorie=sales">Sale</a>
+                  </div>
+            </li>
+            <li class="nav-item">
+              <a href="#contactModal" class="nav-link trigger-btn " data-toggle="modal">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="MessageList.html" id="adminMess">Messages</a>
+            </li>
+
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+          <a href="#myModal" class="trigger-btn" data-toggle="modal" id="logInLink">Login</a>
+          <button id="logOutLink">Logout</button>
+        </div>
+        <li>
+          <button type="button" class="btn btn-default btn-sm">
+            <a href="cart.html">Shopping Cart</a>
+          </button>
+        </li>
+    </nav>
+<div id="productDetailsContainer">
+  <div class="panel panel-primary">
+   <div class="panel-heading"><p class="no-margin d-inline" id="title"></p></div>
+   <div class="panel-body">
+       <div class="row">
+       <div class="col-md-6 text-center">
+          <p id="img"></p>
+       </div>
+       <div class="col-md-6 pull-left">
+         <p id ="description"></p>
+         <p id ="size"><b>Size:</b> </p>
+         <p id="price"><b>Price</b>:</b> </p>
+         <p id ="arrival"><b>Arrival:</b> </p>
+       </div>
+   </div>
+   <div class="row">
+     <div class="col-md-12 text-center">
+            <button type="button" class="btn btn-primary btn-md" onClick="updateProduct(event)"  data-toggle="modal" data-target="#updateModal" id="updateButton">Edit</button>
+            <button type="button" class="btn btn-primary btn-md" data-toggle="modal"onClick="deleteProduct(event)" id="deleteButton">Delete</button>
+            <button id="addToCart">Add to cart</button>
+     </div>
+   </div>
+ </div>
+  <footer class="page-footer font-small unique-color-dark" id="myFooter">
+  </footer>
+
+  <div id="updateModal"  class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-toggle="modal"  aria-hidden="true">
+    <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Update</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+         <form>
+           <div class="form-group">
+             <label for="recipient-name" class="col-form-label" id="idUpdate"></label>
+           </div>
+           <div class="form-group">
+             <label for="recipient-name" class="col-form-label">Title</label>
+             <input type="text" class="form-control" id="titleUpdate">
+           </div>
+           <div class="form-group">
+             <label for="message-text" class="col-form-label">Description</label>
+             <textarea class="form-control" id="descriptionUpdate"></textarea>
+           </div>
+           <div class="form-group">
+               <label for="formGroupExampleInput">Size</label>
+               <input type="text" class="form-control" id="sizeUpdate" placeholder="Size">
+             </div>
+             <div class="form-group">
+               <label for="formGroupExampleInput2">Price</label>
+               <input type="text" class="form-control" id="priceUpdate" placeholder="Price">
+             </div>
+             <div class="form-group">
+             <label for="formGroupExampleInput">Amount</label>
+             <input type="text" class="form-control" id="amountUpdate" placeholder="Amount">
+           </div>
+           <div class="form-group">
+             <div class="form-row col">
+                    <p>Arrival<input type="text" id="datepickerUpdate"></p>
+             </div>
+           </div>
+           <div class="form-group">
+             <label for="formGroupExampleInput2">Image URL</label>
+             <input type="text" class="form-control" id="imageUpdate" placeholder="Image URL">
+           </div>
+         </form>
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-primary"id="sendUpdate">Save</button>
+       </div>
+     </div>
+   </div>
+  </div>
+
+<div class="modal fade bs-modal-sm log-sign" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="bs-example bs-example-tabs">
+        <ul id="myTab" class="nav nav-tabs">
+          <li id="tab1" class=" active tab-style login-shadow "><a href="#signin" data-toggle="tab">Log In</a></li>
+          <li id="tab2" class=" tab-style "><a href="#signup" data-toggle="tab">Sign Up</a></li>
+        </ul>
+      </div>
+      <div class="modal-body">
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane fade active in show" id="signin">
+            <form class="form-horizontal">
+              <fieldset>
+                <div class="group">
+                  <input required="" class="input" type="text" id="userName"><span class="highlight" ></span><span class="bar"></span>
+                  <label class="label" for="date">Username</label>
+                </div>
+                <div class="group">
+                  <input required="" class="input" type="password" id="passwordLog"><span class="highlight"></span><span class="bar"></span>
+                  <label class="label" for="date">Password</label>
+                </div>
+                <em>minimum 6 characters</em>
+                <div class="forgot-link">
+                   <p style="display:none" id="loginMessage"> </p>
+                  <a href="#forgot" data-toggle="modal" data-target="#forgot-password"> I forgot my password</a>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="signin"></label>
+                  <div class="controls">
+                    <button id="confirmsignin" name="signin" class="btn btn-primary btn-block">Log In</button>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="signup">
+            <form class="form-horizontal">
+              <fieldset>
+                <div class="group">
+                  <input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
+                  <label class="label" for="date">Name</label>
+                </div>
+                <div class="group">
+                  <input required="" class="input" type="text" id="userRegist"><span class="highlight" ></span><span class="bar"></span>
+                  <label class="label" for="date">Username</label>
+                </div>
+                <div class="group">
+                  <input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
+                  <label class="label" for="date">Email</label>
+                </div>
+                <div class="group">
+                  <input required="" class="input" type="password" id="password"><span class="highlight"></span><span class="bar"></span>
+                  <label class="label" for="date">Password</label>
+                 </div>
+                 <em>1-8 Characters</em>
+                <div class="forgot-link">
+                  <p style="display:none" id="registerMessage"></p>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="confirmsignup"></label>
+                  <div class="controls">
+                    <button id="confirmsignup" name="confirmsignup" class="btn btn-primary btn-block">Sign Up</button>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+       </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  </div>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="../script.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/bootstrap-datepicker.js"></script>
+  <script src="../models/Auth.js"></script>
+  <script src="../views/login.js"></script>
+  <script src="../views/logout.js"></script>
+  <script src="../models/Cart.js"></script>
+  <script src="../models/Product.js"></script>
+  <script src="../models/Message.js"></script>
+  <script src="../views/updateForm.js"></script>
+  <script src="../views/productDetail.js"></script>
+  </body>
+</html>
