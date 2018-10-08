@@ -1,6 +1,0 @@
-The sender is : Ana from Cluj The destination is: Maria from: Bucuresti
-The parcel is picked up in: Cluj
-The parcel is now in: Cluj the destination is: Deva
-The parcel is now in: Deva the destination is: Sibiu
-The parcel is now in: Sibiu the destination is: Bucuresti
-The parcel is now in: Sibiu the destination is: Bucuresti
